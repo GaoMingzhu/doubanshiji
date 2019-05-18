@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, initial-scale=1,user-scalable=0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+	<script src="./jQuery/jquery.js"></script>
+	<title>豆瓣豆品</title>
+	<style>
+	    html{
+	    	background:#F0F0F0;
+			font-size: 62.5%;
+            height:120rem;
+		}
+		a{text-decoration: none}
+		a,p,ul,li {
+		list-style: none;
+        margin: 0;
+        padding: 0;
+        }
+        .content{
+        	width:100%;
+        }
+        .swiper-wrapper{
+        	width:100%;
+        	height:42rem;
+        }
+        .swiper-wrapper img{
+        	width:100%;
+        	height:100%;
+        }
+        .swiper-button-prev{
+        	margin:-3rem 0 0;
+        }
+        .swiper-button-next{
+        	margin:-3rem 0 0;
+        }
+	    .swiper-pagination{
+	    	position: absolute;
+	    	right:3rem;
+	    }
+        .lbt-choose-box{
+        	float: left;
+        	width:100%;
+        	height:4rem;
+        	background:white;
+        }
+        .lbt-choose{
+        	float: left;
+        	width:49.9%;
+        	height:4rem;
+        }
+        .product{
+        	float: left;
+        	width:96%;
+        	padding:0 2rem 0 2rem;
+        }
+        .clearfix::after{
+	    	height:0;
+	    	content: "";
+	    	display: block;
+	    	clear:both;
+        }
+        .product-head{
+        	float: left;
+        	font-size: 15px;
+        	color: #3e3a39;
+        	line-height: 5.5rem;
+        	margin-left:40px;
+        	width:100%;
+        	height:5.5rem;
+        }
+        .product-list-item{
+        	float:left;
+        	width:45%;
+        	padding:0 2rem 2rem;
+        }
+        .product-img{
+        	float: left;
+        	width:100%;
+        	height:40rem;
+        }
+        .product-img img{
+        	width:100%;
+        	height:100%;
+        }
+        .user-bar-line{
+        	width:0.05rem;
+        	height:2rem;
+        	float: left;
+        	margin-top:1rem;
+        	border:0.05rem solid #f3f3f2;
+        }
+        .product-info{
+        	float: left;
+        	margin:13px 0 7px;
+        }
+        .product-title{;
+        	font-size: 13px;
+        	line-height: 1rem;
+        	color:black;
+        	font-weight:300;
+        	margin-bottom:8px;
+        }
+        .product-desc{
+        	font-size:11px;
+        	height:1rem;
+        	line-height: 1rem;
+        	color:#ababac;
+        	margin-bottom:8px;
+        }
+        .product-price{
+        	font-size:12px;
+        	height:1rem;
+        	line-height:1rem;
+        	color:#DD1944;
+        	margin-right: 9px;
+        }
+        .productBox{
+        	float: left;
+        	margin-top:20px;
+        	background:white;
+        }
+        .swiper-slide{
+        	border-radius: 4px;
+        }
+        .swiper-pagination{
+        	left:auto !important;  
+            /*在css样式里使用了right和left属性，没有填写position。是因为swiper里原本的swiper-pagination类就有position的默认属性*/
+        	right:-40rem !important;  /*!important 权重为最大，优先级最高*/
+        }
+        .swiper-pagination-bullet{
+        	width:4px;
+        	height:4px;
+        }
+        .swiper-pagination-bullet-active{
+        	background:white;
+        }
+	</style>
+</head>
+<body>
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+           <div class=".swiper-pagination.swiper-pagination-bullets"></div>
+	    </div>
+	    <!-- 如果需要分页器 -->
+	    <div class="swiper-pagination"></div>    
+	</div>
+    
+
+		<div class="lbt-choose-box">
+			<div class="lbt-choose"></div>
+			<div class="user-bar-line"></div>
+			<div class="lbt-choose"></div>
+		</div>
+		<div class="productBox clearfix">
+			<div class="product-head">新品首发</div>
+				<div class="product clearfix">
+				   		
+				</div>
+		    </div>
+		</div>
+</body>
+<script>
+	  $(function(){
+        $.ajax({
+                url:"http://shop.com/index/goods/getlist",
+                type:"GET",
+                dataType:"json",
+                success:function(res){
+                var img="";
+                for (var i = 0; i <res.data.banner.length; i++) {
+                    img+='<div class="swiper-slide"> <img src="'+res.data.banner[i].img+'"> </div>'
+                }
+                $(".swiper-wrapper").append(img);
+
+                var productImg="";
+	  			for (var i = 0; i < res.data.goods.length; i++) {
+	  				productImg+='<div class="product-list-item clearfix"><a href="./detail.html?id='+res.data.goods[i].id+'"><div class="product-img"><img src="'+res.data.goods[i].img+'"></div><div class="product-info"><p class="product-title">'+res.data.goods[i].title+'</p><p class="product-desc">'+res.data.goods[i].desc+'</p><p class="product-price">'+res.data.goods[i].price+'</p></div></div></div>'
+	  			}
+	  			$(".product").append(productImg);//取数据
+
+                
+
+
+
+               var mySwiper = new Swiper ('.swiper-container', {
+				    direction: 'horizontal', // 水平切换选项
+				    loop: true, // 循环模式选项
+				    autoplay:true,//自动播放
+				    observer:true,//监听
+				    
+				    // 如果需要分页器
+				    pagination: {
+				      el: '.swiper-pagination',
+				    },
+				    
+				    // 如果需要前进后退按钮
+				    navigation: {
+				      nextEl: '.swiper-button-next',
+				      prevEl: '.swiper-button-prev',
+				    },
+				    
+				    // 如果需要滚动条
+				    scrollbar: {
+				      el: '.swiper-scrollbar',
+				    },
+				  })  //执行（轮播图）功能
+            }
+        })
+
+   });
+</script>
+</html>
