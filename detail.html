@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, initial-scale=1,user-scalable=0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+	<script src="./jQuery/jquery.js"></script>
+	<title>详情页</title>
+	<style>
+	html,body{
+		margin:0;
+		padding:0;
+	}
+	   .box-head{
+	   	width:100%;
+	   	height:18rem;
+	   }
+	   .box-head img{
+	   	width:100%;
+	   	height:100%;
+	   }
+	   .boxBody{
+	   	width:100%;
+	   	height:8rem;
+	   }
+	   .boxBody-title{
+	   	font-size: 1.5rem;
+	   	width:100%;
+	   	height:4rem;
+	   	line-height: 4.3rem;
+	   	text-align: center;
+	   	color:#4f4f4f;
+	   }
+	   .boxBody-price{
+	   	font-size: 1rem;
+	   	width:100%;
+	   	height:1.5rem;
+	   	margin-bottom: 0.1rem;
+	   	text-align: center;
+	   	color:#dd1944;
+	   }
+	   .boxBody-desc{
+	   	font-size: 0.8rem;
+	   	width:100%;
+	   	height:1.5rem;
+	   	margin-bottom: 0.3rem;
+	   	text-align: center;
+	   	color:#ababac;
+	   }
+	   .buy-btn{
+	   	width:18rem;
+	   	height:3rem;
+	   	color:white;
+	   	font-size:1rem;
+	   	text-align:center;
+	   	line-height:3rem;
+	   	background:#dd1944;
+	   	margin:0 auto;
+	   	border-radius: 0.3rem;
+	   }
+	   .picture{
+	   	width:100%;
+	   }
+	   .picture img{
+	   	width:100%;
+	   	height:100%;
+	   }
+	   .clearfix::after{
+	    	height:0;
+	    	content: "";
+	    	display: block;
+	    	clear:both;
+        }
+        .buyWicket{
+            position: fixed;
+            display: none;
+            width:100%;
+            height:3.5rem;
+            background:white;
+            bottom:0;
+            border:1px solid #d5d5d5;
+        }
+        .buyWicket-buy{
+            position: relative;
+            float: right;
+            width:40%;
+            background:#dd1944;
+            font-weight:400;
+            font-size:17px;
+            line-height: 3.5rem;
+            text-align: center;
+            color:white;
+        }
+        .buyWicket-price{
+            float: right;
+            width:40%;
+            font-weight: 400;
+            font-size:17px;
+            line-height: 3.5rem;
+            text-align: center;
+            color:#dd1944;
+        }
+        .kefu{
+        	float: left;
+        	height:3.5rem;
+        	width:19%;
+        	font-size: 14px;
+        	text-align: center;
+        	line-height: 3.5rem;
+        	border-right: 1px solid #d5d5d5;
+        }
+        .tip{
+        	position: fixed;
+        	height:100%;
+        	width:100%;
+        	top:0;
+        	left:0;
+        	background:rgba(0,0,0,.3);
+        	z-index:10;
+        }
+        .duoyu{
+        	float: left;
+        	height:500rem;
+        	width:100%;
+        }
+	    .buy-content{
+        	height:27rem;
+        	width:100%;
+        	background:#ffffff;
+        	position: absolute;
+        	bottom:0;
+        }
+        .buyContent{
+        	position: absolute;
+            height:27rem;
+            width:100%;
+        }
+        .login-cancel{
+        	position: absolute;
+        	height:1rem;
+        	width:1rem;
+        	top:1rem;
+        	right:1rem;
+        	background-image:url("data:image/svg+xml;charset=utf-8,<svg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><title>Group 31</title><g stroke='%23494949' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='round'><path d='M30.872 1.128L1 31M30.872 31L1 1.128'/></g></svg>");
+        	background-size: 100%;
+        }
+        .page{
+        	height:100%;
+        	width:100%;
+        	background:rgba(0,0,0,0);
+        }
+        .hide{
+        	display: none;
+        }
+        .buy-Pic{
+        	position: absolute;
+        	height:6.5rem;
+        	width:6.5rem;
+        	top:27.2px;
+        	left:0.5rem;
+        }
+        .buy-Pic img{
+        	height:100%;
+        	width:100%;
+        }
+        .spu-title{
+        	float: left;
+        	height:1.2rem;
+        	width:20rem;
+        	line-height: 1.2rem;
+        	color:#3E3A39;
+        	font-size: 16px;
+        	margin:1.7rem 0 3px 135px;
+        }
+        .spu-price{
+        	float: left;
+        	height:1.2rem;
+        	width:20rem;
+        	line-height: 1.2rem;
+        	color:#DD1944;
+        	font-size: 16px;
+        	margin:5px 0 10px 135px;
+        }
+        .spu-tips{
+        	float: left;
+        	width:20rem;
+        	height:17px;
+        	color:#5C5C5C;
+        	font-size: 12px;
+        	margin:15px 0 0 135px;
+        }
+        .hd{
+        	position: absolute;
+            height:25.8px;
+            width:100%;
+            color:#505050;
+            font-size: 14px;
+            padding: 0 0 5px;
+            top:8.7rem;
+            left: 1rem;
+        }
+        .bd{
+        	position: absolute;
+        	width:345.2px;
+        	height:57px;
+        	top:10.5rem;
+        	left: 1rem;
+        }
+        .item{
+        	float: left;
+        	height:32px;
+        	width:77px;
+        	margin-right:15px;
+        	color:#505050;
+        	background:#f7f7f7;
+        	border:1px solid #f7f7f7;
+        	font-size: 14px;
+        	border-radius: 2px;
+        	line-height: 32px;
+        	text-align: center;
+        }
+        .item1{
+        	border:1px solid #0aa082;
+        	background:white;
+        	color:#0aa082;
+        }
+        .sl{
+        	position: absolute;
+            height:25.8px;
+            width:100%;
+            color:#505050;
+            font-size: 14px;
+            padding: 0 0 5px;
+            top:14rem;
+            left: 1rem;
+        }
+        .sl-box{
+        	position: absolute;
+        	float: left;
+        	height:30px;
+        	width:94px;
+        	border:1px solid #e4e4e4;
+        	top:15.7rem;
+        	left:1rem;
+        }
+        .jian{
+        	float: left;
+        	height:30px;
+        	width:30px;
+        	font-size: 20px;
+        	text-align: center;
+        	line-height: 30px;
+        	font-weight:700;
+        	background:#F7F7F7;
+        	color:#e4e4e4;
+        }
+        .number{
+        	float:left;
+        	height:25px;
+        	width:32px;
+        	color:#5c5c5c;
+        	font-size: 12px;
+        	text-align: center;
+        	line-height: 30px;
+        }
+        .jia{
+        	float: right;
+        	height:30px;
+        	width:30px;
+        	font-size: 20px;
+        	text-align: center;
+        	line-height: 30px;
+        	font-weight:700;
+        	background:#F7F7F7;
+        	color:#e4e4e4;
+        }
+        input{
+        	border:none;
+        	outline: none;
+        }
+        .buyit-box{
+        	position:absolute;
+        	height:46px;
+        	width:100%;
+        	bottom:0;
+        	border-top:1px solid #e4e4e4;
+        }
+        .add-box{
+        	float: right;
+        	height:46px;
+        	width:117px;
+        	color:#E4E4E4;
+        	font-size:15px;
+        	text-align: center;
+        	line-height: 46px;
+        	border-left: 1px solid #e4e4e4;
+        }
+        .buyit-rightnow{
+        	float: right;
+        	height:46px;
+        	width:117px;
+        	color:#BDBDBD;
+        	background:#E4E4E4;
+        	font-size: 15px;
+        	text-align: center;
+        	line-height: 46px;
+        }
+	</style>
+</head>
+<body>
+     <div class="box-head">
+     	
+     </div>
+     <div class="boxBody">
+     	
+     </div>
+     <div class="buy-btn">立即购买</div>
+     <div class="page">
+	     <div class="tuceng">
+	     	<div class="buyContent hide">
+	     		<div class="login-cancel"></div>
+	     		<div class="buy-Pic">
+                        <img src=" ">
+	     		</div>
+	     		<div class="spu-title"></div>
+	     		<div class="spu-price"></div>
+	     		<div class="spu-tips"></div>
+	     		<div class="hd">颜色：</div>
+	     		<div class="bd">
+
+	     		</div>
+	     		<div class="sl">数量：</div>
+	     		<div class="sl-box">
+	     			<div class="jian">-</div>
+	     			<div class="number">1</div>
+	     			<div class="jia">+</div>
+	     		</div>
+	     		<div class="buyit-box">
+	     			<div class="buyit-rightnow">立即购买</div>
+	     			<div class="add-box">加入购物车</div>
+	     		</div>
+	     	</div>	
+	     </div>
+	 </div>
+     <div class="picture clearfix">
+     	
+     </div>
+     <div class="buyWicket">
+     	<div class="kefu"></div>
+        <div class="buyWicket-buy">立即购买</div>
+        <div class="buyWicket-price"></div>
+     </div>
+     <div class="duoyu"></div>
+</body>
+<script>
+	var color="";
+	var idvalue="";
+	var num="";
+	var goods="";
+	var token=localStorage.getItem("token");
+	var size="";
+
+	console.log(color);
+	console.log(idvalue);
+	console.log(num);
+	console.log(goods);
+	console.log(token);
+	console.log(size);
+
+	var idstr=window.location.search;   // /a/b     ?id=8
+	idvalue=idstr.split("=")[1];  //[?id, 8]
+	$(function(){
+		 $.ajax({
+		 	url:"http://yapi.demo.qunar.com/mock/63665/api/detail",
+		 	//我的：http://yapi.demo.qunar.com/mock/63674/api/detail，何：http://shop.com/index/goods/detail
+            type:"GET",
+            dataType:"json",
+            data:{
+            	id: idvalue
+            },
+
+            success:function(res){
+            	console.log(res);
+            	var buyPrice=res.data.info.price;
+                $(".buyWicket-price").append(buyPrice);
+                $(".spu-price").append(buyPrice);
+
+            	var headImg='<img src="'+res.data.info.img+'">'
+            	$(".box-head").append(headImg);
+
+            	var titlePro=res.data.info.title;
+            	$(".spu-title").append(titlePro);
+
+                var content='<div class="boxBody-title">'+res.data.info.title+'</div><div class="boxBody-price">'+res.data.info.price+'</div><div class="boxBody-desc">'+res.data.info.desc+'</div>'
+                $(".boxBody").append(content);
+                $(".picture").append(res.data.info.content);
+
+                var itemLength=res.data.info.attr.length;
+                for(let i=0;i<itemLength;i++){
+                	var itemNum='<div class="item">'+res.data.info.attr[i].color+'</div>'
+                	$(".bd").append(itemNum);
+                }
+
+                //默认样式
+                var picPro=res.data.info.attr[0].backimg;
+		        $(".buy-Pic>img").attr('src',picPro);
+
+		        $(".spu-tips").text('请选择"颜色"');
+
+                var jia=$(".jia");
+		        var jian=$(".jian");
+		        var item=$(".item");
+		        $(".buy-Pic").append();
+		        item.click(function(){
+		        	// for(let i=0;i<itemLength;i++){
+		        	// 	$(".buy-Pic").empty();
+			        // 	if($(this).text()==res.data.info.attr[i].color){
+			        // 		var backimg='<img src="'+res.data.info.attr[i].backimg+'">'
+			        // 	}
+			        // 	$(".buy-Pic").append(backimg);
+			        // };
+
+			        for(i=0;i<itemLength;i++){
+			        	if($(this).text()==res.data.info.attr[i].color){
+			        	    picPro=res.data.info.attr[i].backimg;
+			        	    goods=res.data.info.attr[i].id;
+			        		$(".buy-Pic>img").attr('src',picPro);
+			        		//选择器>：".buy-Pic>img"表示buy-Pic类下的(所有)img标签，官方解释：在给定的父元素下匹配所有的子元素
+			        		$(".spu-tips").text('已选"'+res.data.info.attr[i].color+'"');
+			        	}
+			        }
+
+                	if($(this).is('.item1')){
+                		$(this).removeClass("item1");
+                		color="";
+                		console.log(color);
+                		picPro=res.data.info.attr[0].backimg;
+                		$(".buy-Pic>img").attr('src',picPro);
+                	}
+                	else{
+                		$(this).addClass("item1").siblings().removeClass("item1");
+                		color=$(this).text();
+                		console.log(color);
+                	}
+
+		            var number=1;
+		            $(".number").text(1);
+		        	jia.css({
+		        		'color':'#5c5c5c',
+		        	})
+
+		        	jia.click(function(){
+		        	number=number+1;
+		        	$(".number").text(number);
+		        	if(number>0){
+			                var jian=$(".jian");
+			        		jian.css({
+			        			'background':'#F7F7F7',
+			        			'color':'#5c5c5c',
+			        		})	
+		        	}
+		        	num=$(".number").text();
+		           });
+
+		        	jian.click(function(){
+		        	if(number>1){
+		        	number=number-1;
+		        	$(".number").text(number);
+		        }
+		        	else{
+		        			$(".number").text(0);
+                            jian.css({
+                            	'background':'#F7F7F7',
+                            	'color':'#e4e4e4',
+                            })
+		        		}
+		        	num=$(".number").text();
+		        });
+                    num=$(".number").text();
+			        var addBox=$(".add-box");
+		        	addBox.css({
+		        		'color':'#505050',
+		        	});
+			        var buyItRightNow=$(".buyit-rightnow");
+		        	buyItRightNow.css({
+			        	'color':'white',
+			        	'background':'#DD1944',
+		        	});
+		    });
+
+            }
+        })
+	});
+
+                
+                var buyBtn=$(".buy-btn");
+                var buyWicketBuy=$(".buyWicket-buy");
+                var loginCancel=$(".login-cancel");
+	        	buyBtn.click(function(){
+	        		$(".page").addClass("tuceng").removeClass("hide");
+	        		//代码执行第一遍之后，page被加上了hide样式，
+	        		//必须给page移除hide样式，使page生效后，才能显示page里的tuceng、buyConteng等样式
+	        		$(".tuceng").addClass("tip");
+	                $(".buyContent").removeClass("hide").addClass("buy-content");
+	        	});
+	        	buyWicketBuy.click(function(){
+	        		$(".page").addClass("tuceng").removeClass("hide");
+	        		$(".tuceng").addClass("tip");
+	        		$(".buyContent").removeClass("hide").addClass("buy-content");
+	        	})
+
+	        	loginCancel.click(function(){
+	        		$(".page").removeClass("tuceng").addClass("hide");
+	        		//在page后加hide样式，
+	        		//是因为page宽高均为100%，覆盖掉了原本页面的购买按键，导致点击无效
+	        		$(".tuceng").removeClass("tip");
+	        		$(".buyContent").addClass("hide").removeClass("buy-content");
+	        	})
+
+
+                $(window).scroll( function() { 
+		          var len = $(window).scrollTop();
+		          if(len>150){
+		            $(".buyWicket").slideDown("slow");
+		          }
+		          else{
+		            $(".buyWicket").slideUp("slow");
+		          }
+		        } ); 
+
+		        var color=$(this).text();
+				$(".add-box").click(function(){
+					if(color==""){
+						return false;
+					}
+					else{
+					location.href="shoppingCart.html";
+					}
+					console.log(color);
+					console.log(idvalue);
+					console.log(num);
+					console.log(goods);
+					console.log(token);
+					$.ajax({
+					 	url:"http://shop.com/index/goods/cart",
+			            type:"POST",
+			            dataType:"json",
+			            data:{
+			            	goods_id:goods,
+			            	color:color,
+			            	token:token,
+			            	count:num,
+			            	size:size,
+			            },
+				})
+				})
+
+
+
+				    
+</script>
+</html>
