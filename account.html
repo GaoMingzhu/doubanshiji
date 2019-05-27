@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, initial-scale=1,user-scalable=0">
+	<script src="./jQuery/jquery.js"></script>
+	<title>账号密码登录</title>
+	<style>
+		html{
+			font-size: 62.5%;
+		}
+		p{
+			padding:0;
+			margin:0;
+		}
+		.login-cancel{
+			float: left;
+			height:1.6rem;
+			width:1.6rem;
+			background-image:url("data:image/svg+xml;charset=utf-8,<svg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'><title>Group 31</title><g stroke='%23494949' stroke-width='2' fill='none' fill-rule='evenodd' stroke-linecap='round'><path d='M30.872 1.128L1 31M30.872 31L1 1.128'/></g></svg>");
+			background-size: 100%;
+			margin:1.5rem 1.5rem 0;
+		}
+		.content{
+			width:95%;
+            padding:1% 2.5% 1% ;
+		}
+		.headBox{
+			float: left;
+			height:10rem;
+			width:95%;
+			margin-left:1.5rem;
+		}
+		.container{
+			float: left;
+			width:95%;
+			margin-left:0.7rem;
+		}
+		.clearfix::after{
+			content: "";
+			height:0;
+			display: block;
+			clear: both;
+		}
+		.titleBox{
+			float: left;
+			height:5.4rem;
+			width:33rem;
+			font-size:3rem;
+			font-weight: 20rem;
+			text-align: center;
+			line-height: 5.4rem;
+			margin:0 1.2rem 0 0;
+		}
+		.titleDetail{
+			float: left;
+			height:1.4rem;
+			width:95%;
+			color:#BABABA;
+			font-size: 1.5rem;
+			text-align: center;
+			line-height: 1.4rem;
+			margin-bottom: 3rem;
+		}
+		.titleDetail p{
+			float: right;
+			color:#42BD56;
+		}
+		.inputBorder{
+			position: relative;
+			float: left;
+			height:4.5rem;
+			width:100%;
+			border:0.1rem solid #ccc;
+		}
+		.inputBorder1{
+			border-top-left-radius: 0.3rem;
+			border-top-right-radius: 0.3rem;
+		}
+		.inputBorder2{
+			border-top:none;
+			border-bottom-left-radius: 0.3rem;
+			border-bottom-right-radius: 0.3rem;
+		}
+		.inputBox{
+			float: left;
+			height:4.2rem;
+			width:72%;
+			color:#494949;
+			font-size: 1.5rem;
+		}
+		.areaCode{
+			float: left;
+			height:4.5rem;
+			width:5.1rem;
+			font-size: 1.5rem;
+			font-weight: 70rem;
+			line-height: 4.8rem;
+			text-align: center;
+		}
+		.vyzm{
+			float:right;
+			height:4.3rem;
+			width:9.5rem;
+			color:#42BD56;
+			font-size:1.5rem;
+			line-height: 4.8rem;
+			text-align: center;
+		}
+		input{
+			border:none;
+			outline: none;
+		}
+		.login{
+			float: left;
+			height: 4.5rem;
+			width:100%;
+			background:rgba(66,189,86,.5);
+			color:white;
+			font-size: 1.7rem;
+			font-weight: 40rem;
+			margin:2rem 0 2rem;
+			text-align: center;
+			line-height: 4.5rem;
+			border-radius: 0.3rem;
+		}
+		.green{
+			float: left;
+			height: 4.5rem;
+			width:100%;
+			background:#42BD56;
+			color:white;
+			font-size: 1.7rem;
+			font-weight: 40rem;
+			margin:2rem 0 2rem;
+			text-align: center;
+			line-height: 4.5rem;
+			border-radius: 0.3rem;
+		}
+		.swich{
+			float: left;
+            width:100%;
+            height:2.4rem;
+            margin-bottom: 5rem;
+		}
+		.loginLabel{
+			float: left;
+			font-size: 1.5rem;
+			color:#42bd56;
+			margin-right:1.2rem;
+		}
+		.problem{
+			float: right;
+			font-size: 1.5rem;
+			color:#494949;
+		}
+		.login-thirdParty{
+			float: left;
+			height:1.2rem;
+			width:100%;
+			color:#BABABA;
+			font-size: 1.3rem;
+			text-align: center;
+			line-height: 1.2rem;
+			margin: 10rem 0 2rem;
+		}
+		.logo-thirdParty{
+			float: left;
+			height: 6.6rem；
+			width:100%;
+		}
+        .logo-weibo{
+        	float: left;
+        	width:6.6rem;
+        	height:6.6rem;
+        	background:url("./image/weibo.png");
+        	background-size:100%;
+        	margin-left:9rem;
+        }
+        .logo-wechat{
+        	float: right;
+        	width:6.6rem;
+        	height:6.6rem;
+        	background:url("./image/wechat.png");
+        	background-size:100%;
+        	margin-left: 3rem;
+        }
+        .divider{
+        	position:absolute;
+        	width:0;
+        	height:3px;
+        	top:6px;
+        	border:1px solid #e4e6e5;
+        }
+        .clear-input{
+        	float: right;
+        	height:4.6rem;
+        	width:2.5rem;
+        	background:url("data:image/svg+xml;charset=utf-8,<svg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'><g fill='none' fill-rule='evenodd'><circle fill='%23BABABA' cx='15' cy='15' r='15'/><path d='M15.096 12.975l3.536-3.536a1.5 1.5 0 1 1 2.121 2.122l-3.535 3.535 3.535 3.536a1.5 1.5 0 1 1-2.121 2.121l-3.536-3.535-3.535 3.535a1.5 1.5 0 1 1-2.122-2.121l3.536-3.536-3.536-3.535a1.5 1.5 0 0 1 2.122-2.122l3.535 3.536z' fill='%23FFF'/></g></svg>");
+        	background-size: 1.6rem;
+        	background-repeat: no-repeat;
+        	margin:1.5rem 0;
+        }
+	</style>
+</head>
+<body>
+	    <a href="./phoneLogin.html"><div class="login-cancel"></div></a>	   
+		<div class="headBox">
+			<div class="titleBox">登录豆瓣</div>
+			<div class="titleDetail">登录注册表示同意<p>豆瓣使用协议、隐私政策</p></div>
+		</div>
+		<div class="container">
+			<div class="inputBorder inputBorder1">
+				<input class="inputBox phone" placeholder="&nbsp 手机号 | 邮箱" value=""></input>
+                <div class="clear-input"></div>
+		    </div>
+		    <div class="inputBorder inputBorder2">
+			    <input class="inputBox mima" placeholder="&nbsp 密码" value=""></input>
+			</div>
+			<div class="login">登录</div>
+			<div class="swich">
+				<div class="loginLabel">免密码登录</div>
+				<div class="loginLabel">海外手机登录</div>
+				<div class="problem">找回密码</div>
+			</div>
+			<div class="login-thirdParty">第三方登录</div>
+			<div class="logo-thirdParty">
+				<div class="logo-weibo"></div>
+				<div class="logo-wechat"></div>
+			</div>
+		</div>
+</body>
+<script>
+	var loginTwoBox=$(".phone , .mima");
+	$(function(){
+	  loginTwoBox.bind('input propertychange', function(){
+		var phone=$(".phone").val();
+	    var mima=$(".mima").val();
+	    if (phone!="" && mima!=""){
+             $(".login").addClass("green");
+	    }
+	    else{
+	    	$(".login").removeClass("green");
+	    	$(".login").addClass("login")
+	    }
+	  })
+	});
+
+	$(function(){
+					var login=$(".login");
+					function clickLogin(){
+						var phone=$(".phone").val();
+						var mima=$(".mima").val();
+						if(phone!="" && mima!=""){
+	                         $.ajax({
+	                         	url:"http://shop.com/index/user/doLogin",
+					            type:"POST",
+					            dataType:"json",
+					            data:{
+					            	phone:phone,
+					            	password:mima,
+					            },
+					            success:function(res){
+					            	console.log(res);
+	                                if(res.error!=0){
+	                                	alert(res.msg);
+	                                }
+	                                else{
+	                                	alert("恭喜你，登录成功！");
+	                                	localStorage.setItem("token",res.data.token);
+	                                	//登录成功之后后端返回了token参数，并且为它生成了一个值
+	                                	//该语句将res里的token传递并保存到控制台的application里
+	                                	//于是，在同一个域名的局域网下的网页都自动将该token同步到了application中
+	                                	//使用的时候直接获取该token即可
+	                                }
+					            }
+	                         })
+						}
+					}
+					login.click(function(){
+		                clickLogin();
+	                 })
+				})
+	   //在account里传递token，var token = localStorage.setItem("token");
+	   //在详情页获取token，localStorage.getItem("token","222222");
+</script>
+</html>
