@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, initial-scale=1,user-scalable=0">
+	<script src="./jQuery/jquery.js"></script>
+	<title>手机号登录</title>
+	<style>
+		html{
+				font-size: 62.5%;
+			}
+		p,a{
+			list-style: none;
+			text-decoration: none;
+			padding:0;
+			margin:0;
+		}	
+		.logo{
+			height:7rem;
+			width:90%;
+			padding:6.5rem 0;
+			margin-left: 5%;
+		}
+		.logo img{
+			width:6rem;
+			height:6rem;
+			size:100%;
+			margin:0.5rem 40%;
+		}
+		.field{
+			height:3.5rem;
+			width:90%;
+			padding:1rem 0;
+			margin-left: 5%;
+			border-bottom: 1px solid #BDBDBD;
+		}
+		.fieldText{
+			font-size: 1.5rem;
+			line-height: 3.5rem;
+		}
+		input{
+			border:none;
+			outline: none;
+		}
+		.yzmBox{
+			height:4.5rem;
+			width:90%;
+			background:#BDBDBD;
+			color:white;
+			text-align: center;
+			line-height: 4.5rem;
+			margin-left:5%;
+			margin-top:4.5rem;
+			margin-bottom:3rem;
+			border-radius: 0.3rem;
+			font-size:1.5rem;
+		}
+		.green{
+			height:4.5rem;
+			width:90%;
+			background:#42BD56;
+			color:white;
+			text-align: center;
+			line-height: 4.5rem;
+			margin-left:5%;
+			margin-top:4.5rem;
+			margin-bottom:3rem;
+			border-radius: 0.3rem;
+			font-size:1.5rem;
+		}
+		.otherLogin{
+			float: left;
+			height:2.4rem;
+			width:90%;
+			margin-left: 5%;
+			color:#9A9A9A;
+			font-size: 1.6rem;
+			text-align: center;
+		}
+		.otherLogin img{
+			height:2.2rem;
+			width:2.2rem;
+			size:100%;
+			margin:0.1rem 0.5rem 0.1rem 0;
+		}
+		.otherLogin span{
+			line-height: 2.4rem;
+			color:#9A9A9A;
+		}
+		.otherLogin em{
+			margin:0 0.5rem;
+		}
+	</style>
+</head>
+<body>
+	<div class="logo">
+		<img src="https://img3.doubanio.com/f/accounts/fc64cace3f8307387d4009ef8c4fd63951f53920/pics/logos/douban@2x.png">
+	</div>
+	<div class="field">
+		<input class="fieldText" placeholder="请输入手机号" value="">
+	</div>
+	<div class="yzmBox">获取验证码</div>
+	<div class="otherLogin">
+		<img src="https://img3.doubanio.com/f/accounts/8d7c55bfc25bc86ed1e397f19bd1fd3d68f0da93/pics/logos/wechat@2x.png">
+	    <span>微信</span>
+        <em>|</em>
+        <a href="./login.html">
+	       <span> 其他方式登录</span>
+	   </a>
+    </div>
+</body>
+<script>
+		var loginOneBox=$(".fieldText");	
+		$(function(){ 
+		    loginOneBox.bind('input propertychange', function() {  
+		    	var phoneInput=$(".fieldText").val();
+		        if(phoneInput!=""){
+					$(".yzmBox").addClass("green");
+				}
+				else{
+					$(".yzmBox").removeClass("green");
+					$(".yzmBox").addClass("login");
+				}
+			  }) 
+		});
+</script>
+</html>
