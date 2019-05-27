@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, initial-scale=1,user-scalable=0">
+	<script src="./jQuery/jquery.js"></script>
+	<title>下单界面</title>
+	<style>
+		html,body{
+			background:#F3F2F2;
+			font-size: 62.5%;
+			padding:0;
+			margin:0;
+		}
+		.title-address{
+			height:5rem;
+			width:100%;
+			padding:0 1.5rem;
+			color:#3E3A39;
+			font-size: 14px;
+			line-height: 5rem;
+		}
+		.new-address{
+			height:3.66rem;
+			width:100%;
+			padding:2.9rem 0;
+			background:white;
+			color:#DD1944;
+			line-height: 3.66rem;
+			text-align: center;
+			font-size: 1.2rem;
+		}
+		.content{
+			height:38rem;
+			width:100%;
+			margin:1.5rem 0;
+		}
+		.content div{
+			font-size: 1.4rem;
+			color:#3E3A39;
+			padding:0.8rem 1.5rem;
+			background:white;
+			border-bottom: 1px solid #F3F2F2;
+		}
+		.product-desc{
+			height:7.9rem;
+			width:92%;
+			background:white;
+			font-size: 1.4rem;
+			padding:0.8rem 0;
+			border-bottom: 1px solid #F3F2F2;
+		}
+		.yhq{
+			margin-top:0.5rem;
+		}
+		.xj{
+			margin-bottom:0.5rem;
+		}
+		.beizhu{
+			height:3.5rem;
+			width:100%;
+			background:#F3F2F2;
+			color:#3e3a39;
+		}
+		.pay-explain{
+			height:1.9rem;
+			width:100%;
+			font-size: 1rem;
+			resize: none;
+			-webkit-appearance: none;
+		}
+		.clearfix::after{
+			content: "";
+			height:0;
+			display: block;
+			clear: both;
+		}
+		.beizhu-box{
+			height:7rem;
+			width:92%;
+			background:white;
+		}
+		.pay-way{
+			height:12.6rem;
+			width:100%;
+			margin:1rem 0 0;
+		}
+		.wz{
+			height:3.9rem;
+			background:white;
+			font-size: 1.4rem;
+			line-height: 3.9rem;
+			padding-left: 1.5rem;
+			border-bottom:1px solid #F3F2F2;
+		}
+		.pay-way-title{
+			height:1.7rem;
+			width:100%;
+			padding:1rem 1.5rem;
+			color:#3E3A39;
+			font-size: 1.2rem;
+		}
+		.buyWicket{
+			position: fixed;
+			bottom:0;
+			height:4.3rem;
+			width:100%;
+			background:blue;
+		}
+		.duoyu{
+			height:8rem;
+			width:100%;
+		}
+	</style>
+</head>
+<body>
+    <div class="title-address">收货地址</div>
+    <div class="new-address">新建地址</div>
+    <div class="content">
+    	<div>豆瓣豆品</div>
+    	<div class="product-desc">豆瓣自然系列餐具</div>
+        <div class="yhq">优惠券</div>
+        <div class="xj">小计</div>
+        <div>运费</div>
+        <div>我要开发票</div>
+        <div class="beizhu-box">
+        	<input class="beizhu" placeholder="备注(请输入 100字以内留言)" value=""></input>
+            <p class="pay-explain">请在下单后30分钟内完成付款，否则订单将被取消</p>
+        </div>
+    </div>
+    <div class="pay-way">
+        <div class="pay-way-title">选择支付方式</div>
+        <div class="wz">使用微信支付</div>
+        <div class="wz">使用支付宝支付</div>
+    </div>
+    <div class="duoyu"></div>
+    <div class="buyWicket"></div>
+</body>
+<script>
+	    $(window).scroll( function() { 
+		var len = $(window).scrollTop();
+		     $(".buyWicket").slideDown("slow");
+		} ); 
+</script>
+</html>
