@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, initial-scale=1,user-scalable=0">
+	<script src="./jQuery/jquery.js"></script>
+	<title>购物车</title>
+	<style>
+	html,body{
+		background:#F3F2F2;
+		font-size: 62.5%;
+		padding:0;
+		margin:0;
+	}
+	p{
+		padding:0;
+		margin:0;
+	}
+		.header{
+			height:5rem;
+			width:95%;
+			background:white;
+			color:#44883e;
+			font-size: 20px;
+			line-height: 5rem;
+			padding-left:5%;
+		}
+		.content{
+			height:31rem;
+			width:100%;
+			margin:6rem 0 0;
+			padding:3rem 0 0;
+		}
+		.kongbai{
+			float: left;
+			height:140px;
+			width:170px;
+			margin:0 100px 35px;
+			background:url("./image/kongbai.png");
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+		.kongbaizi{
+			float: left;
+			height:2.2rem;
+			width:100%;
+			font-size: 15px;
+			color:#ababac;
+			line-height: 2.2rem;
+			text-align: center;
+			margin-bottom: 35px;
+		}
+		.shopping-btn{
+			float: left;
+			height:4.5rem;
+			width:14.5rem;
+			color:#73AD73;
+			border:1.2px solid #73AD73;
+			border-radius: 3px;
+			font-size: 14px;
+			background:white;
+			line-height: 4.5rem;
+			text-align: center;
+			margin-left: 30%;
+		}
+		.quanxuanBox{
+			height:4.6rem;
+			width:100%;
+			background:white;
+			color:#ABABAC;
+			font-size:1.4rem;
+			margin-bottom:2px;
+			line-height: 4.6rem;
+		}
+		.gouxuan{
+			float: left;
+			height:12px;
+			width:12px;
+			border:1.5px solid #ababac;
+			margin:15.5px;
+		}
+		.gxGreen::after{
+			height:12px;
+			width:12px;
+			display: block;
+			color:white;
+			content:"\2713";
+			font-size: 16px;
+			line-height: 12px;
+			background:#73AD73;
+			border:1.5px solid ##73AD73;
+		}
+		.productBox{
+			position: relative;
+			height:11rem;
+			width:100%;
+			background:white;
+			margin-bottom:2px;
+		}
+        .mengceng{
+        	position: absolute;
+        	top:0;
+        	left: 0;
+        	bottom:0;
+        	right: 0;
+        	height:11rem;
+        	width:100%;
+        	background:rgba(0,0,0,.5);
+        }
+		.productBox .gouxuan{
+			margin:4.4rem 1.5rem;
+		}
+		.productBox img{
+			float: left;
+			height:7rem;
+			width:7rem;
+			margin:1.5rem 1rem 0 0;
+		}
+		.productBox .title{
+			float: left;
+			font-size: 13px;
+			color:#3E3A39;
+			height:1.8rem;
+			width:19rem;
+			margin:1.4rem 0 0.1rem 0;
+		}
+		.productBox .color{
+			float: left;
+			color:#ABABAC;
+			font-size: 12px;
+			height:1.8rem;
+			width:19rem;
+		}
+		.buyWicket{
+			position: fixed;
+			bottom:0;
+			height:4.5rem;
+			width:100%;
+			background:white;
+			line-height: 4.5rem;
+			font-size: 16px;
+		}
+		.buyWicket-buy{
+			float: right;
+			width:12rem;
+			background:#ABABAC;
+			color:white;
+			font-size: 16px;
+			text-align: center;
+		}
+		.buyWicket-price{
+			float: right;
+			width:7.5rem;
+			height: 100%;
+			text-align: center;		
+		}
+		.pa{
+			height: 50%;
+			color:#DD1944;
+			font-size: 16px;
+			line-height: 3.25rem;
+		}
+		.pb{
+			height: 50%;
+			color:#ABABAC;
+			font-size: 10px;
+			line-height: 2rem;
+		}
+		.jiesuan{
+			color:white;
+			background:#DD1944;
+		}
+		.sl-box{
+        	float: left;
+        	height:25px;
+        	width:100px;
+        	border:1px solid #F7F7F7;
+        }
+        .jian{
+        	float: left;
+        	height:25px;
+        	width:30px;
+        	font-size: 16px;
+        	text-align: center;
+        	line-height: 25px;
+        	font-weight:700;
+        	background:#F7F7F7;
+        	color:#F3F2F2;
+        }
+        .number{
+        	float:left;
+        	height:25px;
+        	width:40px;
+        	color:#5c5c5c;
+        	font-size: 12px;
+        	text-align: center;
+        	line-height: 25px;
+        }
+        .jia{
+        	float: right;
+        	height:25px;
+        	width:30px;
+        	font-size: 16px;
+        	text-align: center;
+        	line-height: 25px;
+        	font-weight:700;
+        	background:#F7F7F7;
+        	color:#ababac;
+        }
+        .shanchu{
+        	float: right;
+        	color:#ABABAC;
+        	font-size: 12px;
+        	margin-top:14px;
+        	margin-right: 1.5rem;
+        }
+        .price{
+        	float: right;
+        	height:2.2rem;
+        	width:6rem;
+        	color:#DD1944;
+        	font-size: 15px;
+        	line-height: 2.2rem;
+        	text-align: center;
+        	margin-right:1.5rem;
+        }
+        .hide{
+        	display: none;
+        }
+        .quxiao{
+        	position: absolute;
+        	height:3.4rem;
+        	width:8.8rem;
+        }
+        .queding{
+        	float: left;
+        	height:3.4rem;
+        	width:8.8rem;
+        }
+	</style>
+</head>
+<body>
+	<div class="header"><strong>豆瓣</strong> | <strong>豆品</strong></div>
+    <!-- <div class="content">
+    	<div class="kongbai"></div>
+        <div class="kongbaizi">购物车空空如也</div>
+        <a href="./douban.html">
+           <div class="shopping-btn">去逛逛吧</div>
+       </a>
+    </div> -->
+       <div class="quanxuanBox"><div class="gouxuan"></div>豆瓣豆品</div>
+       <div class="container"></div>
+       <div class="buyWicket">
+       	  <div class="gouxuan"></div>全选
+       	  <div class="buyWicket-buy">请选择</div>
+       	  <div class="buyWicket-price">
+       	  	<p class="pa">￥ 0.00</p>
+       	  	<p class="pb">(不含运费)</p>
+       	  </div>
+       </div>
+</body>
+<script>
+	var token=window.localStorage.getItem(token);
+	$.ajax({
+		url:"http://yapi.demo.qunar.com/mock/63665/api/cart",
+		type:"GET",
+        dataType:"json",
+        data:{
+        	token:token,
+        },
+        success:function(res){
+        	console.log(res);
+            var itemContent="";
+        	var itemNum=res.data.cart.length;
+        	for(i=0;i<itemNum;i++){
+	    		itemContent+='<div class="productBox"><div class="mengceng hide"><div class="quxiao"></div><div class="queding"></div><div class="gouxuan"></div><img src="https://img3.doubanio.com/view/dianpu_product_item/small/public/p2049916.jpg"><div class="title">'+res.data.cart[i].name+'</div><div class="shanchu">删除</div><div class="color">'+res.data.cart[i].color+'</div><div class="sl-box"><div class="jian">-</div><div class="number">'+res.data.cart[i].num+'</div><div class="jia">+</div></div> <div class="price">'+res.data.cart[i].price+'</div></div>'
+        	}
+	    		$(".container").append(itemContent);
+
+
+	var gouxuan=$(".gouxuan");
+	gouxuan.click(function(){
+		if(buyWicketBuy.is('.jiesuan')){
+            buyWicketBuy.removeClass("jiesuan");
+            buyWicketBuy.text("请选择");
+		}
+		else{
+			buyWicketBuy.addClass("jiesuan");
+			buyWicketBuy.text("结算");
+		}
+		var onlyPrice=$(this).siblings(".price").text().split("").slice(1).join("");
+		onlyPrice=Number(onlyPrice);
+		if($(this).is('.gxGreen')){
+			$(this).removeClass("gxGreen");
+		    $(".pa").text("￥ 0.00");
+		}
+		else{
+            $(this).addClass("gxGreen");
+		    $(".pa").text("￥ "+onlyPrice.toFixed(2));
+		}
+	})
+
+	var quanxuan=$(".quanxuanBox .gouxuan,.buyWicket .gouxuan");
+	var buyWicketBuy=$(".buyWicket-buy");
+	quanxuan.click(function(){
+		var onePrice="";
+		var totalPrice="";
+		for(i=0;i<itemNum;i++){
+			onePrice=res.data.cart[i].price.split("").slice(1).join("");
+			onePrice=Number(onePrice);
+			totalPrice+=onePrice;
+			totalPrice=Number(totalPrice);
+		}
+		if($(this).is('.gxGreen')){
+			gouxuan.addClass("gxGreen");
+		    $(".pa").text("￥ "+totalPrice.toFixed(2));
+		}
+		else{
+            gouxuan.removeClass("gxGreen");
+		    $(".pa").text("￥ 0.00");
+		}
+	})//计算总价
+
+	var shanchu=$(".shanchu");
+	shanchu.click(function(){
+		$(this).siblings(".mengceng").removeClass("hide");
+	})
+
+	var jia=$(".jia");
+	var jian=$(".jian");
+	jia.css({
+		'color':'#ababac',
+	})
+
+	jia.click(function(){
+	var number=$(this).siblings(".number").text();
+	number=Number(number)+1;
+	$(this).siblings(".number").text(number);
+		if(number>0){
+	    		jian.css({
+	    			'background':'#F3F2F2',
+	    			'color':'#ababac',
+	    		})	
+		}
+   });
+
+	jian.click(function(){
+		var number=$(this).siblings(".number").text();
+		if(number>1){
+		
+		number=Number(number)-1;
+		$(this).siblings(".number").text(number);
+		$(this).siblings(".number").text(number);
+	}
+		else{
+				$(this).siblings(".number").text(0);
+	            jian.css({
+	            	'background':'#F3F2F2',
+	            	'color':'#e4e4e4',
+	            })
+			}
+});
+	
+        }
+
+	})
+	
+</script>
+</html>
